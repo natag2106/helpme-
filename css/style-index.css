@@ -1,0 +1,174 @@
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+
+  body {
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(to bottom right, #fceff9, #e0f7fa);
+    color: #333;
+  }
+
+  body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+      radial-gradient(circle at 20% 20%, #ffe0f0 0%, transparent 40%),
+      radial-gradient(circle at 80% 80%, #d0f0ff 0%, transparent 40%),
+      radial-gradient(circle at 50% 50%, #f3e5f5 0%, transparent 60%);
+    z-index: -1;
+    opacity: 0.6;
+  }
+
+  .navbar {
+    background-color: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(10px);
+    display: flex;
+    justify-content: center;
+    padding: 15px 0;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    border-bottom: 1px solid #ddd;
+  }
+
+  .navbar a {
+    color: #6a1b9a;
+    text-decoration: none;
+    margin: 0 12px;
+    padding: 10px 18px;
+    border-radius: 25px;
+    transition: all 0.3s ease;
+    font-weight: 500;
+    background-color: #f3e5f5;
+  }
+
+  .navbar a:hover {
+    background-color: #ce93d8;
+    color: white;
+    transform: scale(1.05);
+  }
+
+header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;    
+  padding: 20px 10px;
+  background: linear-gradient(to right, #f8bbd0, #b2ebf2);
+  color: #4a148c;
+  border-bottom: 2px solid #e1bee7;
+}
+
+
+.header-top {
+  display: flex;
+  align-items: center;  
+  justify-content: center;
+  gap: 15px;             
+}
+
+header img.logo {
+  width: 60px;        
+  height: 60px;
+  border-radius: 50%; 
+  object-fit: cover;
+  box-shadow: 0 2px 6px rgba(3, 3, 3, 0.2);
+  background-color: #6a1b9a;
+}
+
+header h1 {
+  font-size: 40px;
+  margin: 0;
+}
+
+header p {
+  font-size: 18px;
+  margin-top: 8px;
+  text-align: center;
+}
+
+
+  /* 🔹 Lista de psicólogos */
+  .psychologist-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+    padding: 60px 20px;
+  }
+
+  /* 🔹 Card */
+  .card {
+    background-color: #ffffff;
+    border-radius: 15px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+    padding: 25px;
+    max-width: 300px;
+    text-align: center;
+    transition: transform 0.3s ease;
+    border: 2px solid #f3e5f5;
+  }
+
+  .card:hover {
+    transform: translateY(-5px);
+    border-color: #ce93d8;
+  }
+
+  .card h3 {
+    margin-bottom: 10px;
+    color: #6a1b9a;
+  }
+
+  .card p {
+    margin-bottom: 20px;
+    font-size: 0.95em;
+  }
+
+  .card img.foton {
+    width: 150px;      
+    height: 150px;     
+    object-fit: cover;  
+    border-radius: 50%; 
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2); 
+    margin-bottom: 10px;
+  }
+
+
+  .btn {
+    background-color: #ba68c8;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+  .btn:hover {
+    background-color: #9c27b0;
+  }
+
+
+  @media (max-width: 600px) {
+    .navbar {
+      flex-direction: column;
+    }
+
+    .navbar a {
+      margin: 8px 0;
+    }
+
+    .psychologist-list {
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+

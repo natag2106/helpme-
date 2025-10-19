@@ -1,0 +1,127 @@
+.nosotros-section {
+  position: relative;
+  padding: 100px 20px;
+  background: linear-gradient(to bottom right, #fceff9, #e0f7fa);
+  text-align: center;
+  color: #4a148c;
+  overflow: hidden;
+}
+
+.nosotros-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+.nosotros-section h2 {
+  font-size: 3em;
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
+.nosotros-intro {
+  font-size: 1.4em;
+  margin-bottom: 60px;
+  color: #6a1b9a;
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.7;
+}
+
+.nosotros-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 40px;
+}
+
+.nosotros-card {
+  background-color: #ffffff;
+  border-radius: 20px;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+  padding: 30px;
+  max-width: 350px;
+  border: 2px solid #f3e5f5;
+  transition: transform 0.3s ease, opacity 0.5s ease;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInCard 1s ease forwards;
+}
+
+.nosotros-card:nth-child(1) { animation-delay: 0.2s; }
+.nosotros-card:nth-child(2) { animation-delay: 0.4s; }
+.nosotros-card:nth-child(3) { animation-delay: 0.6s; }
+
+.nosotros-card:hover {
+  transform: translateY(-5px);
+  border-color: #ce93d8;
+}
+
+.nosotros-card h3 {
+  font-size: 1.6em;
+  margin-bottom: 15px;
+  color: #6a1b9a;
+}
+
+.nosotros-card p {
+  font-size: 1.1em;
+  color: #555;
+  line-height: 1.6;
+}
+
+/* Estrellas decorativas */
+.estrella {
+  position: absolute;
+  font-size: 5em;
+  color: #f3e5f5;
+  opacity: 0.5;
+  z-index: 0;
+  animation: flotar 6s infinite ease-in-out;
+}
+
+.izquierda {
+  top: 20%;
+  left: 5%;
+}
+
+.derecha {
+  bottom: 15%;
+  right: 5%;
+}
+
+@keyframes flotar {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes fadeInCard {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 700px) {
+  .nosotros-grid {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .nosotros-card {
+    max-width: 90%;
+  }
+
+  .nosotros-section h2 {
+    font-size: 2.4em;
+  }
+
+  .nosotros-intro {
+    font-size: 1.2em;
+  }
+
+  .estrella {
+    font-size: 3em;
+  }
+}

@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Reservas - HelpMe</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: radial-gradient(circle at top left, #fceff9, #e0f7fa);
+      color: #4a148c;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    .fondo-estrellas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 0;
+      background-image:
+        radial-gradient(circle, rgba(255, 223, 255, 0.4) 2px, transparent 2px),
+        radial-gradient(circle, rgba(255, 255, 200, 0.3) 1.5px, transparent 2px),
+        radial-gradient(circle, rgba(255, 255, 255, 0.2) 1px, transparent 2px);
+      background-size: 120px 120px, 80px 80px, 40px 40px;
+      animation: parpadeo 20s linear infinite;
+    }
+
+    @keyframes parpadeo {
+      0% { background-position: 0 0, 0 0, 0 0; }
+      100% { background-position: 100px 100px, 80px 80px, 40px 40px; }
+    }
+
+    .boton-regreso {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      background-color: #ffffff;
+      color: #6a1b9a;
+      border: 2px solid #ce93d8;
+      padding: 10px 18px;
+      border-radius: 30px;
+      font-size: 1em;
+      font-weight: 600;
+      text-decoration: none;
+      z-index: 10;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    .boton-regreso:hover {
+      background-color: #f3e5f5;
+      transform: scale(1.05);
+    }
+
+    .reservas-section {
+      position: relative;
+      padding: 100px 20px 60px;
+      text-align: center;
+      z-index: 1;
+    }
+
+    .reservas-container {
+      max-width: 1000px;
+      margin: 0 auto;
+      background-color: #ffffff;
+      border-radius: 20px;
+      padding: 40px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      border: 2px solid #f3e5f5;
+    }
+
+    h2 {
+      font-size: 2em;
+      margin-bottom: 30px;
+      color: #6a1b9a;
+    }
+
+    form {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 30px;
+    }
+
+    label {
+      display: block;
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: #4a148c;
+    }
+
+    input, select, textarea {
+      width: 100%;
+      padding: 12px;
+      border-radius: 10px;
+      border: 1px solid #ce93d8;
+      font-size: 1em;
+      background-color: #fdfdfd;
+      color: #4a148c;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 100px;
+    }
+
+    .full-width {
+      grid-column: span 2;
+    }
+
+    .submit-btn {
+      background-color: #ce93d8;
+      color: white;
+      border: none;
+      padding: 14px 30px;
+      font-size: 1em;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .submit-btn:hover {
+      background-color: #ba68c8;
+    }
+
+    @media (max-width: 700px) {
+      form {
+        grid-template-columns: 1fr;
+      }
+
+      .full-width {
+        grid-column: span 1;
+      }
+
+      h2 {
+        font-size: 1.6em;
+      }
+
+      .boton-regreso {
+        font-size: 0.9em;
+        padding: 8px 14px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="fondo-estrellas"></div>
+<div id="usuario-info" style="display:none; align-items:center; gap:10px; margin:20px;">
+  Bienvenido, <span id="usuario-correo" style="font-weight:600;"></span>
+  <button class="btn btn-primary" id="cerrar-sesion">
+    <span class="btn-txt">Cerrar sesión</span>
+    <kbd class="btn-kbd"><img src="/image/logout-svgrepo-com.svg" alt="cerrar" style="width:16px;"></kbd>
+  </button>
+</div>
+
+  <a href="/index.html" class="boton-regreso">← Volver</a>
+
+  <section class="reservas-section" id="reservas">
+    <div class="reservas-container">
+      <h2>Reserva tu sesión</h2>
+      <form>
+        <div>
+          <label for="fecha">Fecha</label>
+          <input type="date" id="fecha" name="fecha" required>
+        </div>
+
+        <div>
+          <label for="hora">Hora</label>
+          <input type="time" id="hora" name="hora" required>
+        </div>
+
+        <div>
+          <label for="psicologo">Psicólogo</label>
+          <select id="psicologo" name="psicologo" required>
+            <option value="">Selecciona</option>
+          </select>
+        </div>
+        <div class="full-width">
+          <label for="tema">¿De qué será la sesión?</label>
+          <textarea id="tema" name="tema" placeholder="Ej. Manejo de estrés laboral, duelo, autoestima..." required></textarea>
+        </div>
+
+        <div class="full-width" style="text-align: center;">
+          <button type="submit" class="submit-btn">Reservar sesión</button>
+        </div>
+      </form>
+    </div>
+  </section>
+<script src="/js/sesion.js"></script>
+<script src="/js/obtener_psicologo.js"></script>
+<script src="/js/reservas.js"></script>
+</body>
+</html>

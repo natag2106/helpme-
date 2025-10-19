@@ -1,0 +1,338 @@
+/* styles.css */
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(to right, #e0f7fa, #fce4ec);
+  overflow-x: hidden;
+}
+
+header {
+  text-align: center;
+  padding: 60px 20px;
+  animation: fadeIn 2s ease;
+}
+
+header h1 {
+  font-size: 3em;
+  color: #4a148c;
+  margin-bottom: 10px;
+}
+
+header p {
+  font-size: 1.2em;
+  color: #6a1b9a;
+}
+
+.psychologist-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 40px 20px;
+  gap: 30px;
+}
+
+.card {
+  background: white;
+  border-radius: 15px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+  width: 280px;
+  padding: 20px;
+  transition: transform 0.3s ease, opacity 0.5s ease;
+  opacity: 0;
+}
+
+.card h3 {
+  color: #4a148c;
+  margin-bottom: 10px;
+}
+
+.card p {
+  color: #555;
+  font-size: 0.95em;
+}
+
+.btn {
+  display: inline-block;
+  margin-top: 15px;
+  padding: 10px 20px;
+  background: #ab47bc;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.btn:hover {
+  background: #8e24aa;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.access-container {
+  padding: 60px 20px;
+  background: linear-gradient(to bottom right, #fceff9, #e0f7fa);
+  color: #4a148c;
+  text-align: center;
+  animation: fadeIn 1.5s ease;
+}
+
+.access-container h2 {
+  font-size: 2.5em;
+  margin-bottom: 10px;
+}
+
+.access-container p {
+  font-size: 1.1em;
+  margin-bottom: 30px;
+  color: #6a1b9a;
+}
+
+.form-toggle {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 30px;
+}
+
+.form-toggle button {
+  background-color: #f3e5f5;
+  border: none;
+  padding: 10px 20px;
+  margin: 0 10px;
+  border-radius: 25px;
+  font-weight: 500;
+  color: #6a1b9a;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.form-toggle button.active,
+.form-toggle button:hover {
+  background-color: #ce93d8;
+  color: white;
+  transform: scale(1.05);
+}
+
+.form-box {
+  max-width: 500px;
+  margin: 0 auto;
+  background-color: #ffffff;
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+  border: 2px solid #f3e5f5;
+  display: none;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.5s ease;
+}
+
+.form-box.active {
+  display: block;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+label {
+  display: block;
+  text-align: left;
+  margin-bottom: 8px;
+  font-weight: 500;
+  color: #6a1b9a;
+}
+
+input {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-family: 'Segoe UI', sans-serif;
+  font-size: 1em;
+  background-color: #fceff9;
+  transition: border-color 0.3s ease;
+}
+
+input:focus {
+  border-color: #ba68c8;
+  outline: none;
+}
+
+.btn-access {
+  background-color: #ba68c8;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 25px;
+  cursor: pointer;
+  font-size: 1em;
+  transition: background-color 0.3s ease;
+}
+
+.btn-access:hover {
+  background-color: #9c27b0;
+}
+.back-arrow {
+  display: inline-block;
+  margin-bottom: 30px;
+  font-size: 1em;
+  color: #6a1b9a;
+  text-decoration: none;
+  background-color: #f3e5f5;
+  padding: 10px 18px;
+  border-radius: 25px;
+  transition: all 0.3s ease;
+  font-weight: 500;
+}
+
+.back-arrow:hover {
+  background-color: #ce93d8;
+  color: white;
+  transform: scale(1.05);
+}
+.nosotros-section {
+  position: relative;
+  padding: 100px 20px;
+  background: linear-gradient(to bottom right, #fceff9, #e0f7fa);
+  text-align: center;
+  color: #4a148c;
+  overflow: hidden;
+}
+
+.nosotros-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+.nosotros-section h2 {
+  font-size: 3em;
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
+.nosotros-intro {
+  font-size: 1.4em;
+  margin-bottom: 60px;
+  color: #6a1b9a;
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.7;
+}
+
+.nosotros-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 40px;
+}
+
+.nosotros-card {
+  background-color: #ffffff;
+  border-radius: 20px;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+  padding: 30px;
+  max-width: 350px;
+  border: 2px solid #f3e5f5;
+  transition: transform 0.3s ease, opacity 0.5s ease;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInCard 1s ease forwards;
+}
+
+.nosotros-card:nth-child(1) { animation-delay: 0.2s; }
+.nosotros-card:nth-child(2) { animation-delay: 0.4s; }
+.nosotros-card:nth-child(3) { animation-delay: 0.6s; }
+
+.nosotros-card:hover {
+  transform: translateY(-5px);
+  border-color: #ce93d8;
+}
+
+.nosotros-card h3 {
+  font-size: 1.6em;
+  margin-bottom: 15px;
+  color: #6a1b9a;
+}
+
+.nosotros-card p {
+  font-size: 1.1em;
+  color: #555;
+  line-height: 1.6;
+}
+
+/* Estrellas decorativas */
+.estrella {
+  position: absolute;
+  font-size: 5em;
+  color: #f3e5f5;
+  opacity: 0.5;
+  z-index: 0;
+  animation: flotar 6s infinite ease-in-out;
+}
+
+.izquierda {
+  top: 20%;
+  left: 5%;
+}
+
+.derecha {
+  bottom: 15%;
+  right: 5%;
+}
+
+@keyframes flotar {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes fadeInCard {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 700px) {
+  .nosotros-grid {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .nosotros-card {
+    max-width: 90%;
+  }
+
+  .nosotros-section h2 {
+    font-size: 2.4em;
+  }
+
+  .nosotros-intro {
+    font-size: 1.2em;
+  }
+
+  .estrella {
+    font-size: 3em;
+  }
+}
+.boton-psicologo {
+  display: inline-block;
+  background-color: #ffffff;
+  color: #6a1b9a;
+  border: 2px solid #ce93d8;
+  padding: 12px 24px;
+  border-radius: 30px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.boton-psicologo:hover {
+  background-color: #f3e5f5;
+  transform: scale(1.05);
+}

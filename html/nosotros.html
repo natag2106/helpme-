@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sobre HelpMe</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: radial-gradient(circle at top left, #fceff9, #e0f7fa);
+      color: #4a148c;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    .fondo-estrellas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 0;
+      background-image:
+        radial-gradient(circle, rgba(255, 223, 255, 0.4) 2px, transparent 2px),
+        radial-gradient(circle, rgba(255, 255, 200, 0.3) 1.5px, transparent 2px),
+        radial-gradient(circle, rgba(255, 255, 255, 0.2) 1px, transparent 2px);
+      background-size: 120px 120px, 80px 80px, 40px 40px;
+      animation: parpadeo 20s linear infinite;
+    }
+
+    @keyframes parpadeo {
+      0% { background-position: 0 0, 0 0, 0 0; }
+      100% { background-position: 100px 100px, 80px 80px, 40px 40px; }
+    }
+
+    .boton-regreso {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      background-color: #ffffff;
+      color: #6a1b9a;
+      border: 2px solid #ce93d8;
+      padding: 10px 18px;
+      border-radius: 30px;
+      font-size: 1em;
+      font-weight: 600;
+      text-decoration: none;
+      z-index: 10;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    .boton-regreso:hover {
+      background-color: #f3e5f5;
+      transform: scale(1.05);
+    }
+
+    .nosotros-section {
+      position: relative;
+      padding: 80px 20px;
+      text-align: center;
+      z-index: 1;
+    }
+
+    .nosotros-container {
+      max-width: 1100px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 2;
+    }
+
+    h2 {
+      font-size: 2.2em;
+      margin-bottom: 20px;
+      font-weight: 600;
+      color: #6a1b9a;
+    }
+
+    .nosotros-intro {
+      font-size: 1.2em;
+      margin-bottom: 50px;
+      color: #6a1b9a;
+      max-width: 850px;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.7;
+    }
+
+    .nosotros-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 30px;
+    }
+
+    .nosotros-card {
+      background-color: #ffffff;
+      border-radius: 20px;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+      padding: 30px;
+      max-width: 330px;
+      border: 2px solid #f3e5f5;
+      transition: transform 0.3s ease, opacity 0.5s ease;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeInCard 1s ease forwards;
+    }
+
+    .nosotros-card:nth-child(1) { animation-delay: 0.2s; }
+    .nosotros-card:nth-child(2) { animation-delay: 0.4s; }
+    .nosotros-card:nth-child(3) { animation-delay: 0.6s; }
+
+    .nosotros-card:hover {
+      transform: translateY(-5px);
+      border-color: #ce93d8;
+    }
+
+    .nosotros-card h3 {
+      font-size: 1.4em;
+      margin-bottom: 15px;
+      color: #6a1b9a;
+      font-weight: 600;
+    }
+
+    .nosotros-card p {
+      font-size: 1em;
+      color: #555;
+      line-height: 1.6;
+    }
+
+    @keyframes fadeInCard {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 700px) {
+      .nosotros-grid {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .nosotros-card {
+        max-width: 90%;
+      }
+
+      h2 {
+        font-size: 1.8em;
+      }
+
+      .nosotros-intro {
+        font-size: 1.1em;
+      }
+
+      .boton-regreso {
+        font-size: 0.9em;
+        padding: 8px 14px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="fondo-estrellas"></div>
+
+  <a href="/index.html" class="boton-regreso">← Volver</a>
+
+  <section class="nosotros-section" id="nosotros">
+    <div class="nosotros-container">
+      <h2>Sobre HelpMe</h2>
+      <p class="nosotros-intro">
+        HelpMe es una plataforma web creada para brindar apoyo psicológico a personas en situación de vulnerabilidad. A través de su sistema digital seguro, profesional y de conocimiento emocional, permite que especialistas y usuarios en necesidad de ayuda emocional puedan compartir lugar.
+      </p>
+
+      <div class="nosotros-grid">
+        <div class="nosotros-card">
+          <h3>🎯 Misión</h3>
+          <p>Brindar apoyo psicológico accesible, seguro y empático a usuarios que enfrentan trastornos emocionales, sociales o psicológicos, a través de una experiencia digital que inspire confianza, profesionalismo y empatía.</p>
+        </div>
+
+        <div class="nosotros-card">
+          <h3>🌟 Visión</h3>
+          <p>Ser una plataforma reconocida en salud mental digital, que ofrezca un servicio confiable, cálido y visualmente atractivo en el bienestar emocional con un enfoque profesional y humano.</p>
+        </div>
+
+        <div class="nosotros-card">
+          <h3>💡 ¿Cómo funciona?</h3>
+          <p>Esta página fue desarrollada con HTML, CSS y JavaScript. Permite que usuarios accedan a recursos emocionales, agenden citas y reciban orientación profesional desde cualquier lugar.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</body>
+</html>

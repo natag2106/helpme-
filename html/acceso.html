@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Acceso – HelpMe</title>
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    .access-container {
+      padding: 60px 20px;
+      background: linear-gradient(to bottom right, #fceff9, #e0f7fa);
+      color: #4a148c;
+      text-align: center;
+    }
+
+    .access-container h2 {
+      font-size: 2.5em;
+      margin-bottom: 20px;
+    }
+
+    .form-toggle {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 30px;
+    }
+
+    .form-toggle button {
+      background-color: #f3e5f5;
+      border: none;
+      padding: 10px 20px;
+      margin: 0 10px;
+      border-radius: 25px;
+      font-weight: 500;
+      color: #6a1b9a;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .form-toggle button.active,
+    .form-toggle button:hover {
+      background-color: #ce93d8;
+      color: white;
+    }
+
+    .form-box {
+      max-width: 500px;
+      margin: 0 auto;
+      background-color: #ffffff;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+      border: 2px solid #f3e5f5;
+      display: none;
+    }
+
+    .form-box.active {
+      display: block;
+    }
+
+    label {
+      display: block;
+      text-align: left;
+      margin-bottom: 8px;
+      font-weight: 500;
+      color: #6a1b9a;
+    }
+
+    input {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 20px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      font-family: 'Segoe UI', sans-serif;
+      font-size: 1em;
+      background-color: #fceff9;
+      transition: border-color 0.3s ease;
+    }
+
+    input:focus {
+      border-color: #ba68c8;
+      outline: none;
+    }
+
+    .btn-access {
+      background-color: #ba68c8;
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 25px;
+      cursor: pointer;
+      font-size: 1em;
+      transition: background-color 0.3s ease;
+    }
+
+    .btn-access:hover {
+      background-color: #9c27b0;
+    }
+
+    .msg {
+      margin-top: 15px;
+      font-weight: bold;
+    }
+    .msg.success { color: green; }
+    .msg.error { color: red; }
+  </style>
+  <script src="/js/login-user.js"></script>
+</head>
+<body>
+
+  <section class="access-container">
+    <h2>Accede a HelpMe</h2>
+
+    <div class="form-toggle">
+      <button id="btn-login" class="active">Iniciar sesión</button>
+      <button id="btn-register">Registrarse</button>
+    </div>
+    <a href="/index.html" class="back-arrow">← Volver al inicio</a>
+
+    <form class="form-box active" id="login-form">
+      <label for="login-email">Correo electrónico</label>
+      <input type="email" id="login-email" name="email" required />
+
+      <label for="login-password">Contraseña</label>
+      <input type="password" id="login-password" name="password" required />
+
+      <button type="submit" class="btn-access">Entrar</button>
+      <div id="login-msg" class="msg"></div>
+    </form>
+
+    <!-- Formulario registro -->
+    <form class="form-box" id="register-form">
+      <label for="register-name">Nombre completo</label>
+      <input type="text" id="register-name" name="nombre" required />
+
+      <label for="register-email">Correo electrónico</label>
+      <input type="email" id="register-email" name="email" required />
+
+      <label for="register-password">Contraseña</label>
+      <input type="password" id="register-password" name="password" required />
+
+      <button type="submit" class="btn-access">Crear cuenta</button>
+      <div id="register-msg" class="msg"></div>
+    </form>
+  </section>
+</body>
+</html>

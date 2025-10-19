@@ -1,0 +1,219 @@
+/* ===============================
+   ESTILO BASE
+=================================*/
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(to bottom right, #fceff9, #e0f7fa);
+  color: #333;
+  min-height: 100vh;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    radial-gradient(circle at 20% 20%, #ffe0f0 0%, transparent 40%),
+    radial-gradient(circle at 80% 80%, #d0f0ff 0%, transparent 40%),
+    radial-gradient(circle at 50% 50%, #f3e5f5 0%, transparent 60%);
+  z-index: -1;
+  opacity: 0.6;
+}
+
+/* ===============================
+   ENCABEZADO
+=================================*/
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 25px 10px;
+  background: linear-gradient(to right, #f8bbd0, #b2ebf2);
+  color: #4a148c;
+  border-bottom: 2px solid #e1bee7;
+}
+
+.header img.logo {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin: 5px;
+  box-shadow: 0 2px 6px rgba(3, 3, 3, 0.2);
+  background-color: #6a1b9a;
+}
+
+.header .titulo {
+  font-size: 36px;
+  margin-top: 10px;
+  font-weight: 600;
+  text-align: center;
+}
+
+/* ===============================
+   CONTENEDOR DE FORMULARIO
+=================================*/
+.popi {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 80px 20px;
+}
+
+.sesion {
+  background-color: #ffffff;
+  border-radius: 20px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  max-width: 400px;
+  width: 100%;
+  overflow: hidden;
+  border: 2px solid #f3e5f5;
+  transition: transform 0.3s ease;
+}
+
+.sesion:hover {
+  transform: translateY(-5px);
+}
+
+.blanco {
+  padding: 40px 30px;
+  text-align: center;
+}
+
+.blanco h2 {
+  color: #6a1b9a;
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.blanco p {
+  margin-top: 15px;
+  font-size: 0.95em;
+  color: #666;
+}
+
+/* ===============================
+   FORMULARIO
+=================================*/
+.inic input[type="email"] {
+  width: 100%;
+  padding: 12px;
+  border: 1.5px solid #ce93d8;
+  border-radius: 10px;
+  margin-bottom: 15px;
+  font-size: 1em;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.inic input[type="email"]:focus {
+  border-color: #9c27b0;
+  box-shadow: 0 0 5px rgba(156, 39, 176, 0.3);
+}
+
+.inic button {
+  width: 100%;
+  background-color: #ba68c8;
+  color: #fff;
+  border: none;
+  padding: 12px 0;
+  border-radius: 25px;
+  cursor: pointer;
+  font-size: 1em;
+  font-weight: 600;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.inic button:hover {
+  background-color: #9c27b0;
+  transform: scale(1.03);
+}
+
+/* ===============================
+   MODAL
+=================================*/
+.modal {
+  display: none;
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.4);
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+}
+
+.modal-content {
+  background: #fff;
+  padding: 30px;
+  border-radius: 20px;
+  text-align: center;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+  max-width: 350px;
+  position: relative;
+  animation: fadeIn 0.3s ease;
+}
+
+.modal-logo {
+  width: 80px;
+  margin-bottom: 15px;
+}
+
+#cerrar-modal {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 22px;
+  cursor: pointer;
+  color: #6a1b9a;
+}
+
+#modal-icon {
+  font-size: 35px;
+  margin-bottom: 10px;
+}
+
+#modal-mensaje {
+  font-size: 1em;
+  color: #555;
+}
+
+@keyframes fadeIn {
+  from {opacity: 0; transform: scale(0.9);}
+  to {opacity: 1; transform: scale(1);}
+}
+
+/* ===============================
+   FOOTER
+=================================*/
+.footer {
+  text-align: center;
+  padding: 20px;
+  background-color: rgba(255,255,255,0.8);
+  border-top: 1px solid #ddd;
+  font-size: 0.9em;
+  color: #555;
+}
+
+/* ===============================
+   RESPONSIVE
+=================================*/
+@media (max-width: 600px) {
+  .header .titulo {
+    font-size: 26px;
+  }
+
+  .sesion {
+    max-width: 90%;
+  }
+}

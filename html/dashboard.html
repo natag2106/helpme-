@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Panel del Paciente – HelpMe</title>
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.css" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js"></script>
+  <script src="/js/sesion.js"></script>
+  <link rel="icon" href="/image/1000054885.png">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Quicksand', sans-serif;
+      background: linear-gradient(to bottom right, #fceff9, #e0f7fa);
+      display: flex;
+      height: 100vh;
+    }
+    .sidebar {
+      width: 250px;
+      background-color: #f3e5f5;
+      padding: 30px 20px;
+      box-shadow: 2px 0 8px rgba(0,0,0,0.1);
+    }
+    .sidebar h2 { color: #6a1b9a; margin-bottom: 30px; font-size: 1.5em; }
+    .sidebar a {
+      display: block; margin: 15px 0; text-decoration: none;
+      color: #4a148c; font-weight: 500; padding: 10px;
+      border-radius: 8px; transition: background 0.3s ease; cursor: pointer;
+    }
+    .sidebar a:hover { background-color: #ce93d8; color: white; }
+    .main-content { flex: 1; padding: 40px; overflow-y: auto; }
+    .main-content h1 { color: #6a1b9a; margin-bottom: 20px; }
+    .section {
+      display: none; background: white; border-radius: 15px;
+      padding: 20px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    .section.active { display: block; }
+
+    /* CHAT */
+    .chat-container { display: flex; flex-direction: column; height: 400px; border: 1px solid #ddd; border-radius: 12px; overflow: hidden; }
+    #msgs { flex: 1; padding: 15px; overflow-y: auto; background: #fafafa; }
+    .msg { margin: 8px 0; padding: 10px; border-radius: 10px; max-width: 70%; background: #c5e1a5; color: #33691e; }
+    .msg.me { background: #e1bee7; color: #4a148c; margin-left: auto; text-align: right; }
+    .meta { font-size: 0.8em; color: #777; margin-bottom: 5px; }
+    .chat-input { display: flex; border-top: 1px solid #ddd; }
+    .chat-input input { flex: 1; padding: 10px; border: none; outline: none; }
+    .chat-input button { background: #6a1b9a; color: white; border: none; padding: 10px 15px; cursor: pointer; transition: 0.3s; }
+    .chat-input button:hover { background: #4a148c; }
+
+  </style>
+</head>
+
+<body>
+  <!-- ===== SIDEBAR ===== -->
+  <div class="sidebar">
+    <h2>👤 Panel Paciente</h2>
+    <a href="/index.html">🏠 Inicio</a>
+    <a data-section="mensajes">📨 Mensajes</a>
+    <a data-section="citas">📅 Mis Citas</a>
+    <a data-section="perfil">👤 Perfil</a>
+    <a data-section="configuracion">⚙️ Configuración</a>
+  </div>
+
+  <!-- ===== MAIN CONTENT ===== -->
+  <div class="main-content">
+    <h1>Bienvenido</h1>
+
+    <!-- ===== CHAT ===== -->
+    <div id="mensajes" class="section">
+      <h2>📨 Chat con Psicólogos</h2>
+      <div class="chat-wrapper" style="display:flex;height:400px;border:1px solid #ddd;border-radius:12px;overflow:hidden;">
+        <div class="contacts" style="width:200px;background:#f3e5f5;overflow-y:auto;">
+          <h3 style="margin:10px;color:#6a1b9a;">Psicólogos</h3>
+          <ul id="contactList" style="list-style:none;padding:0;margin:0;"></ul>
+        </div>
+        <div class="chat-container" style="flex:1;display:flex;flex-direction:column;">
+          <div id="chatHeader" style="background:#6a1b9a;color:white;padding:10px;">Selecciona un psicólogo</div>
+          <div id="msgs"></div>
+          <div class="chat-input">
+            <input type="text" id="msgInput" placeholder="Escribe un mensaje...">
+            <button onclick="sendMsg()">Enviar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== CITAS ===== -->
+    <div id="citas" class="section active">
+      <div id="calendar"></div>
+    </div>
+
+    <!-- ===== PERFIL ===== -->
+    <div id="perfil" class="section">
+      <h2>👤 Perfil</h2>
+      <div id="usuario-info" style="display:none; align-items:center; gap:10px; margin:20px;">
+        Bienvenido, <span id="usuario-correo" style="font-weight:600;"></span>
+        <button class="btn btn-primary" id="cerrar-sesion">
+          <span class="btn-txt">Cerrar sesión</span>
+          <kbd class="btn-kbd"><img src="/image/logout-svgrepo-com.svg" alt="cerrar" style="width:16px;"></kbd>
+        </button>
+      </div>
+    </div>
+
+    <!-- ===== CONFIGURACIÓN ===== -->
+    <div id="configuracion" class="section">
+      <h2>⚙️ Configuración</h2>
+      <p>Ajustes de la cuenta, notificaciones, etc.</p>
+    </div>
+  </div>
+
+  <script>
+  // Sidebar navegación
+  document.querySelectorAll(".sidebar a").forEach(link => {
+    link.addEventListener("click", () => {
+      const sectionId = link.getAttribute("data-section");
+      document.querySelectorAll(".section").forEach(sec => sec.classList.remove("active"));
+      if(sectionId) document.getElementById(sectionId).classList.add("active");
+    });
+  });
+
+  // ===== Chat con psicólogos =====
+  let currentChat = null;
+  let currentPsicologoId = null;
+  const currentUser = "Paciente";
+
+  async function cargarPsicologos() {
+    const pacienteId = localStorage.getItem("paciente_id");
+    if (!pacienteId) {
+      alert("No se encontró tu ID de paciente. Inicia sesión nuevamente.");
+      window.location.href = "/html/acceso.html";
+      return;
+    }
+
+    try {
+      const res = await fetch(`http://127.0.0.1:5000/chats_paciente?paciente_id=${pacienteId}`);
+      const data = await res.json();
+
+      const list = document.getElementById('contactList');
+      list.innerHTML = '';
+
+      if (!Array.isArray(data) || data.length === 0) {
+        list.innerHTML = '<li style="padding:10px;color:#777;">No tienes psicólogos asignados</li>';
+        return;
+      }
+
+      data.forEach(p => {
+        const li = document.createElement('li');
+        li.textContent = p.psicologo_nombre;
+        li.style.cssText = 'padding:10px;cursor:pointer;';
+        li.onclick = () => openChat(p.psicologo_nombre, p.psicologo_id);
+        list.appendChild(li);
+      });
+    } catch (err) {
+      console.error('Error cargando psicólogos:', err);
+    }
+  }
+
+  async function openChat(nombre, id) {
+    currentChat = nombre;
+    currentPsicologoId = id;
+    document.getElementById("chatHeader").textContent = "Chat con " + nombre;
+    document.getElementById("msgs").innerHTML = "";
+
+    localStorage.setItem("ultimo_chat_psicologo", id);
+    localStorage.setItem("ultimo_chat_nombre", nombre);
+
+    try {
+      const pacienteId = localStorage.getItem("paciente_id");
+      const res = await fetch(`http://127.0.0.1:5000/obtener_mensajes_paciente/${id}`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ paciente_id: pacienteId })
+      });
+      const data = await res.json();
+      if (data.status === "ok" && Array.isArray(data.mensajes)) {
+        data.mensajes.forEach(m => {
+          const sender = m.remitente === 'paciente' ? currentUser : currentChat;
+          appendMessage({ sender, text: m.mensaje });
+        });
+      }
+    } catch (err) {
+      console.error('Error al cargar mensajes:', err);
+    }
+  }
+
+  function appendMessage(message) {
+    const wrap = document.createElement("div");
+    const isMe = message.sender === currentUser;
+    wrap.style.cssText = `
+      margin:8px 0; padding:10px; border-radius:10px; max-width:70%;
+      ${isMe ? "background:#c5e1a5; margin-left:auto; text-align:right;" : "background:#e1bee7;"}
+    `;
+    wrap.innerHTML = `<b>${message.sender}</b><br>${message.text}`;
+    const msgBox = document.getElementById("msgs");
+    msgBox.appendChild(wrap);
+    msgBox.scrollTop = msgBox.scrollHeight;
+  }
+
+  async function sendMsg() {
+    if (!currentPsicologoId) return alert("Selecciona un psicólogo primero");
+    const input = document.getElementById("msgInput");
+    const text = input.value.trim();
+    if (!text) return;
+
+    appendMessage({ sender: currentUser, text });
+    input.value = "";
+
+    const pacienteId = localStorage.getItem("paciente_id");
+
+    try {
+      const res = await fetch('http://127.0.0.1:5000/enviar_mensaje_paciente', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          paciente_id: pacienteId,
+          psicologo_id: currentPsicologoId,
+          mensaje: text,
+          remitente: 'paciente'
+        })
+      });
+      const data = await res.json();
+      if (data.status !== 'ok') alert('Error: ' + data.message);
+    } catch (err) {
+      console.error('Error al enviar mensaje:', err);
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', async () => {
+    await cargarPsicologos();
+    const lastChatId = localStorage.getItem("ultimo_chat_psicologo");
+    const lastChatName = localStorage.getItem("ultimo_chat_nombre");
+    if (lastChatId && lastChatName) openChat(lastChatName, lastChatId);
+  });
+
+  // ===== FullCalendar para Paciente =====
+  document.addEventListener('DOMContentLoaded', function() {
+    let calendarEl = document.getElementById('calendar');
+    let selectedEvent = null;
+    const paciente_id = localStorage.getItem("paciente_id") || 1;
+
+    let calendar = new FullCalendar.Calendar(calendarEl, {
+      initialView: 'dayGridMonth',
+      locale: 'es',
+      headerToolbar: {
+        left: 'prev,next today',
+        center: 'title',
+        right: 'dayGridMonth,timeGridWeek,timeGridDay'
+      },
+      events: `http://127.0.0.1:5000/obtener_reservas_paciente/${paciente_id}`,
+      eventClick(info) {
+        selectedEvent = info.event;
+        alert(`Cita con: ${info.event.extendedProps.psicologo}\nHora: ${new Date(info.event.start).toLocaleString()}`);
+      }
+    });
+    calendar.render();
+  });
+
+  // ===== Cerrar sesión =====
+  const btnCerrar = document.getElementById('cerrar-sesion');
+  btnCerrar?.addEventListener('click', () => {
+    localStorage.removeItem('paciente_id');
+    window.location.href = '/html/acceso.html';
+  });
+
+  </script>
+
+  
+</body>
+</html>

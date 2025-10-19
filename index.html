@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HelpMe – Psicología a tu alcance</title>
+  <link rel="icon" href="/image/1000054885.png" type="image/jpg">
+  <link rel="stylesheet" href="css/carrusel.css">
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;500&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style-index.css">
+  <script src="/js/visibilidad_nav.js"></script>
+</head>
+<body>
+<header id="inicio">
+  <div class="header-top">
+    <img src="/image/1000054885.png" alt="logo" class="logo">
+    <h1>HelpMe</h1>
+  </div>
+  <p>Encuentra el psicólogo ideal para ti</p>
+</header>
+    <div class="navbar" id="navbar" style="display:flex; align-items:center; padding:10px 20px;">
+  <!-- Info usuario logueado -->
+  <div id="usuario-info" style="display:none; align-items:center; gap:10px;">
+    Bienvenido, <span id="usuario-correo" style="font-weight:600;"></span>
+    <button class="btn btn-primary" id="cerrar-sesion">
+      <span class="btn-txt">Cerrar sesión</span>
+      <kbd class="btn-kbd">
+        <img src="/image/logout-svgrepo-com.svg" alt="cerrar" style="width:16px;">
+      </kbd>
+    </button>
+  </div>
+
+  <!-- Links de navegación -->
+  <div id="nav-links" style="display:flex; gap:15px; align-items:center;">
+    <a href="#inicio" class="common">Inicio</a>
+    <a href="/html/reservas.html" class="paciente-only">Reserva</a>
+    <a href="/html/contacto.html" class="common">Contacto</a>
+    <a href="/html/nosotros.html" class="common">Nosotros</a>
+    <a href="/html/dashboard_prueba.html" class="psicologo-only">Panel de citas</a>
+    <a href="/html/dashboard.html" class="paciente-only">Dashboard</a>
+    <a href="/html/acceso.html" class="no-login">Iniciar sesión</a>
+    <a href="/html/psicologo.html" class="no-login">Psicólogo</a>
+  </div>
+</div>
+
+
+<section class="hero" id="inicio">
+  <div class="carousel">
+    <div class="carousel-inner">
+      <img src="/image/psicologo 1.jpg" alt="Foto 1">
+      <img src="/image/psicologo 2.jpg" alt="Foto 2">
+      <video autoplay muted loop playsinline>
+        <source src="/image/3783600431-preview.MP4" type="video/mp4">
+        Tu navegador no soporta videos HTML5.
+      </video>
+      <video autoplay muted loop playsinline>
+        <source src="/image/3622083145-preview.MP4" type="video/mp4">
+        Tu navegador no soporta videos HTML5.
+      </video>
+    </div>
+
+    <button class="prev">&#10094;</button>
+    <button class="next">&#10095;</button>
+  </div>
+
+  <div class="hero-text">
+    <h2>HelpMe</h2>
+    <p>Tú salud mental es importante para nosotros!!</p>
+  </div>
+</section>
+
+
+
+<section class="psychologist-list">
+  <div class="card">
+    <h3>Dra. Laura Gómez</h3>
+    <img src="/image/foton.jpg" alt="Foto psicologo" class="foton">
+    <p>Especialista en ansiedad y terapia cognitivo-conductual.</p>
+    <button class="btn" onclick="openModal('Laura')">Ver perfil</button>
+  </div>
+  <div class="card">
+    <h3>Dr. Andrés Ruiz</h3>
+    <img src="/image/foton.jpg" alt="Foto psicologo" class="foton">
+    <p>Psicólogo clínico con enfoque humanista y terapia de pareja.</p>
+    <button class="btn" onclick="openModal('Andres')">Ver perfil</button>
+  </div>
+  <div class="card">
+    <h3>Dra. Camila Torres</h3>
+    <img src="/image/foton.jpg" alt="Foto psicologo" class="foton">
+    <p>Experta en depresión, duelo y terapia emocional.</p>
+    <button class="btn" onclick="openModal('Camila')">Ver perfil</button>
+  </div>
+</section>
+
+<div id="modal" class="modal">
+  <div class="modal-content card">
+    <span class="close" onclick="closeModal()">&times;</span>
+    <img id="modal-img" class="foton" src="" alt="Foto psicologo">
+    <h2 id="modal-title"></h2>
+    <p id="modal-info"></p>
+  </div>
+</div>
+
+
+<style>
+
+  .modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0; top: 0;
+    width: 100%; height: 100%;
+    background-color: rgba(0,0,0,0.6);
+  }
+
+  .modal-content.card {
+    background: #fff;
+    margin: 8% auto;
+    padding: 20px;
+    border-radius: 12px;
+    width: 350px;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    position: relative;
+  }
+
+
+  .close {
+    position: absolute;
+    top: 10px; right: 15px;
+    font-size: 26px;
+    font-weight: bold;
+    cursor: pointer;
+    color: #555;
+  }
+  .close:hover {
+    color: #000;
+  }
+
+
+  .modal-content img.foton {
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin: 15px 0;
+  }
+
+  .card {
+    background: #fff;
+    padding: 15px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    margin: 10px;
+    text-align: center;
+  }
+
+  .foton {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-bottom: 10px;
+  }
+
+  .btn {
+    background: #9737ec80;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+  .btn:hover {
+    background: #610291;
+  }
+.footer {
+  background:linear-gradient(to right, #f8bbd0, #b2ebf2);
+  color: #f1f1f1;
+  padding: 50px 20px 20px;
+  font-family: 'Lato', sans-serif;
+  position: relative;
+}
+
+.footer::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 4px;
+  background: linear-gradient(to right, #42a5f5, #1e88e5, #0d47a1);
+  box-shadow: 0 -3px 6px rgba(0,0,0,0.4); 
+}
+
+
+.footer-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.footer h2 {
+  color: #3D9CA8; 
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.8rem;
+  margin-bottom: 10px;
+}
+
+.footer h3 {
+  color: #3D9CA8;
+  font-size: 1.2rem;
+  margin-bottom: 15px;
+  font-weight: 600;
+}
+
+.footer p, 
+.footer a {
+  font-size: 0.95rem;
+  color: #640697;
+  line-height: 1.6;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.footer a:hover {
+  color: #000000;   
+}
+
+.footer-links ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-links li {
+  margin-bottom: 10px;
+}
+
+.footer-social .social-icons {
+  display: flex;
+  gap: 12px;
+}
+.social-icons img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;       
+    background:  #9608e3cb;      
+    padding: 8px;              
+    box-shadow: 0 3px 6px rgba(0,0,0,0.2);
+    opacity: 0.9;
+    transition: transform 0.3s, opacity 0.3s;
+}
+
+.footer-social a {
+  font-size: 1.5rem;
+  color: #f1f1f1;
+  transition: transform 0.3s, color 0.3s;
+}
+
+.footer-social a:hover {
+  color: #ad0ade;
+  transform: scale(1.2);
+}
+
+.footer-bottom {
+  text-align: center;
+  padding-top: 20px;
+  margin-top: 30px;
+  font-size: 0.85rem;
+  color: #bbb;
+}
+
+
+</style>
+
+
+<script>
+  
+  const profiles = {
+    Laura: {
+      title: "Dra. Laura Gómez",
+      info: "Especialista en ansiedad y terapia cognitivo-conductual. Con 10 años de experiencia en terapia individual.",
+      img: "/image/foton.jpg"
+    },
+    Andres: {
+      title: "Dr. Andrés Ruiz",
+      info: "Psicólogo clínico con enfoque humanista y terapia de pareja. Ha trabajado en procesos de acompañamiento emocional durante 8 años.",
+      img: "/image/foton.jpg"
+    },
+    Camila: {
+      title: "Dra. Camila Torres",
+      info: "Experta en depresión, duelo y terapia emocional. Ayuda a las personas a superar procesos de pérdida y tristeza profunda.",
+      img: "/image/foton.jpg"
+    }
+  };
+
+
+  function openModal(name) {
+    document.getElementById("modal-title").textContent = profiles[name].title;
+    document.getElementById("modal-info").textContent = profiles[name].info;
+    document.getElementById("modal-img").src = profiles[name].img;
+    document.getElementById("modal").style.display = "block";
+  }
+
+
+  function closeModal() {
+    document.getElementById("modal").style.display = "none";
+  }
+
+
+  window.onclick = function(event) {
+    if (event.target == document.getElementById("modal")) {
+      closeModal();
+    }
+  }
+</script>
+
+
+  <script src="js/carrousel.js"></script>
+  <script src="js/script.js"></script>
+  <footer class="footer">
+  <div class="footer-container">
+
+    <div class="footer-brand">
+      <h2>HelpMe</h2>
+      <p>Tu salud mental es importante para nosotros</p>
+    </div>
+
+    <div class="footer-links">
+      <h3>Navegación</h3>
+      <ul>
+        <li><a href="#inicio">Inicio</a></li>
+        <li><a href="/html/reservas.html">Reservas</a></li>
+        <li><a href="/html/contacto.html">Contacto</a></li>
+        <li><a href="/html/nosotros.html">Nosotros</a></li>
+        <li><a href="/html/acceso.html">Iniciar sesión</a></li>
+        <li><a href="/html/psicologo.html">Psicólogo</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-contact">
+      <h3>Contáctanos</h3>
+      <p>📧 helpmepsicologos1@gmail.com</p>
+    </div>
+
+    <div class="footer-social">
+      <h3>Síguenos</h3>
+      <div class="social-icons">
+        <a href="https://www.instagram.com/helpme_psicologos?igsh=MWdwbmRlYzd1ODNqag%3D%3D&utm_source=qr " aria-label="Instagram"><img src="/image/instagram-svgrepo-com.svg" alt="Instagram"></a>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <p>&copy; 2025 HelpMe. Todos los derechos reservados.</p>
+  </div>
+</footer>
+
+  
+</body>
+</html>
